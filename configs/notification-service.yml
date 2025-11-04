@@ -23,7 +23,7 @@ spring:
     show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
 
-  # RabbitMQ
+  # RabbitMQ (nomes dos containers Docker)
   rabbitmq:
     host: rabbitmq
     port: 5672
@@ -34,8 +34,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
+    username: morsegamer@gmail.com
+    password: psfbnbmuuhymednj
     properties:
       mail:
         smtp:
@@ -47,16 +47,16 @@ spring:
           timeout: 5000
           writetimeout: 5000
 
-# Eureka Client
+# Eureka Client (nome do container Docker)
 eureka:
   client:
     service-url:
-      defaultZone: ${EUREKA_SERVER_URL:http://service-registry:8761/eureka/}
+      defaultZone: http://service-registry:8761/eureka/
     fetch-registry: true
     register-with-eureka: true
   instance:
     prefer-ip-address: true
-    instance-id: ${spring.application.name}:${random.value}
+    hostname: notification-service
 
 # Actuator
 management:
@@ -67,6 +67,3 @@ management:
   endpoint:
     health:
       show-details: always
-  health:
-    mail:
-      enabled: true
